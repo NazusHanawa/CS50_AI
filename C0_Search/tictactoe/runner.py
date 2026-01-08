@@ -1,8 +1,11 @@
 import pygame
 import sys
+import os
 import time
 
 import tictactoe as ttt
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 pygame.init()
 size = width, height = 600, 400
@@ -13,9 +16,10 @@ white = (255, 255, 255)
 
 screen = pygame.display.set_mode(size)
 
-mediumFont = pygame.font.Font("OpenSans-Regular.ttf", 28)
-largeFont = pygame.font.Font("OpenSans-Regular.ttf", 40)
-moveFont = pygame.font.Font("OpenSans-Regular.ttf", 60)
+font_path = os.path.join(BASE_DIR, "OpenSans-Regular.ttf")
+mediumFont = pygame.font.Font(font_path, 28)
+largeFont = pygame.font.Font(font_path, 40)
+moveFont = pygame.font.Font(font_path, 60)
 
 user = None
 board = ttt.initial_state()

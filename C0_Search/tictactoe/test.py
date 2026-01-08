@@ -1,1 +1,0 @@
-print(min(None, 2))

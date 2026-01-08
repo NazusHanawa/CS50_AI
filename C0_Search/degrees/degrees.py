@@ -1,7 +1,10 @@
 import csv
 import sys
+import os
 
 from util import Node, StackFrontier, QueueFrontier
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Maps names to a set of corresponding person_ids
 names = {}
@@ -56,6 +59,7 @@ def main():
     if len(sys.argv) > 2:
         sys.exit("Usage: python degrees.py [directory]")
     directory = sys.argv[1] if len(sys.argv) == 2 else "large"
+    directory = f"{BASE_DIR}/{directory}"
 
     # Load data from files into memory
     print("Loading data...")
