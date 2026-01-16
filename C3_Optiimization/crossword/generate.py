@@ -41,9 +41,9 @@ class CrosswordCreator():
         for i in range(self.crossword.height):
             for j in range(self.crossword.width):
                 if self.crossword.structure[i][j]:
-                    print(letters[i][j] or " ", end="")
+                    print(letters[i][j] or " ", end=" ")
                 else:
-                    print("█", end="")
+                    print("█", end=" ")
             print()
 
     def save(self, assignment, filename):
@@ -309,8 +309,8 @@ def main():
     #     sys.exit("Usage: python generate.py structure words [output]")
 
     # Parse command-line arguments
-    structure = f"{BASE_DIR}/data/structure0.txt" # sys.argv[1]
-    words = f"{BASE_DIR}/data/words0.txt" # sys.argv[2]
+    structure = f"{BASE_DIR}/data/structure1.txt" # sys.argv[1]
+    words = f"{BASE_DIR}/data/words1.txt" # sys.argv[2]
     output = sys.argv[3] if len(sys.argv) == 4 else None
 
     # Generate crossword
