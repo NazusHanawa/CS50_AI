@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import os
 import sys
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 import tensorflow as tf
 
 from sklearn.model_selection import train_test_split
@@ -77,8 +76,6 @@ def load_data(data_dir):
             continue
         
         print(directory_name, end="\r")
-        # if directory_name not in ("00001"):
-        #     continue
         
         class_id = int(directory_name)
         total_class_images = 0
@@ -109,8 +106,11 @@ def get_model():
     model = tf.keras.models.Sequential([
         # Define input format
         tf.keras.layers.Input(shape=(IMG_WIDTH, IMG_HEIGHT, 3)),
-        
         tf.keras.layers.Rescaling(1/255),
+        
+        # Convolutional layer & Max-polling layer, using 2x2 pool size.
+        tf.keras.layers.Conv2D(32, (3, 3), activation="relu"),
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
         
         # Convolutional layer & Max-polling layer, using 2x2 pool size.
         tf.keras.layers.Conv2D(64, (3, 3), activation="relu"),
@@ -125,7 +125,7 @@ def get_model():
         
         # Add a hiden layer with dropout.
         tf.keras.layers.Dense(128, activation="tanh"),
-        tf.keras.layers.Dropout(0.25),
+        tf.keras.layers.Dropout(0.5),
         
         # Add an output layer with output for all categories.
         tf.keras.layers.Dense(NUM_CATEGORIES, activation="softmax")
