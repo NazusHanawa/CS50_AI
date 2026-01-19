@@ -37,9 +37,7 @@ def main():
 
     # Otherwise, get sentence as input
     else:
-        # s = input("Sentence: ")
-        s = "I had a little moist red paint in the palm of my hand."
-        #s = "Holmes lit a pipe. Holmes lit a pipe."
+        s = input("Sentence: ")
 
     # Convert input into list of words
     s = preprocess(s)
